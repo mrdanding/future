@@ -1,10 +1,10 @@
-package entity;
+package com.future.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * @author shuaiqi.xsq, 15/8/27
+ * @author shuaiqi.xsq, 15/8/29
  */
 @Entity
 @Table(name = "task", schema = "", catalog = "Future")

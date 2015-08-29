@@ -3,4 +3,22 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!-- dao -->
+    <bean id="TaskDao" class="com.future.dao.impl.TaskDaoImpl">
+    </bean>
+
+    <!-- service -->
+    <bean id="PublishTaskService" class="com.future.service.impl.PublishTaskServiceImpl">
+        <property name="taskDao">
+            <ref bean="TaskDao"></ref>
+        </property>
+    </bean>
+
+    <!-- action -->
+    <bean id="publishTaskAction" class="com.future.action.PublishTaskAction">
+        <property name="publishTaskService">
+            <ref bean="PublishTaskService"></ref>
+        </property>
+    </bean>
+
 </beans>

@@ -6,8 +6,8 @@
     <session-factory>
         <property name="connection.url">jdbc:mysql://localhost:3306/Future</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <mapping class="entity.TaskEntity"/>
-        <mapping class="entity.UserEntity"/>
+        <mapping class="com.future.entity.TaskEntity"/>
+        <mapping class="com.future.entity.UserEntity"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>

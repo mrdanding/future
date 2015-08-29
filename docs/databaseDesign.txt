@@ -12,6 +12,9 @@ taskUrl,
 shipSource,
 priceMin,
 priceMax,
+status,
+isSuccess,
+browseTime,
 
 user:
 userName,

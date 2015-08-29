@@ -1,4 +1,4 @@
-package entity;
+package com.future.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
