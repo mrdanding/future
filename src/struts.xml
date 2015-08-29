@@ -5,4 +5,11 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+        <package name="methods" namespace="/" extends="struts-default">
+                <default-action-ref name="error"></default-action-ref>
+                <action name="error">
+                        <result>/error.jsp</result>
+                </action>
+                <action name="getJson" class="com.future.action.ReturnJsonAction" method="getJson" />
+        </package>
 </struts>

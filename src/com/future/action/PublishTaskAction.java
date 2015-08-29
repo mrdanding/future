@@ -17,6 +17,4 @@ public class PublishTaskAction extends BaseAction {
 
     private PublishTaskService publishTaskService;
 
-    
-
 }
