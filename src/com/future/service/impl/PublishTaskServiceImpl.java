@@ -12,9 +12,10 @@ public class PublishTaskServiceImpl implements PublishTaskService {
 
     @Override
     public void saveTask(TaskEntity taskEntity) {
-        
+        taskDao.saveTask(taskEntity);
     }
 
+    // getter and setter
     public TaskDao getTaskDao() {
         return taskDao;
     }

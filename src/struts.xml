@@ -5,11 +5,22 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-        <package name="methods" namespace="/" extends="struts-default">
-                <default-action-ref name="error"></default-action-ref>
-                <action name="error">
-                        <result>/error.jsp</result>
-                </action>
+        <constant name="struts.objectFactory" value="spring"/>
+        <constant name="struts.ui.theme" value="simple" />
+        <!--解决乱码 -->
+        <constant name="struts.i18n.encoding" value="UTF-8" />
+
+        <package name="methods" namespace="/task" extends="struts-default">
+
+                <!--<default-action-ref name="error"></default-action-ref>-->
+                <!--<action name="error">-->
+                        <!--<result>/error.jsp</result>-->
+                <!--</action>-->
                 <action name="getJson" class="com.future.action.ReturnJsonAction" method="getJson" />
+
+                <action name="publishTask" class="PublishTaskAction">
+                        <result name="success">/task/publishTask.jsp</result>
+                        <result name="error">/error.jsp</result>
+                </action>
         </package>
 </struts>

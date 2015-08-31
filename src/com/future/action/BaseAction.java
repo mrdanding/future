@@ -15,7 +15,9 @@ import com.opensymphony.xwork2.ActionSupport;
 public class BaseAction extends ActionSupport implements SessionAware,  
         ServletRequestAware, ServletResponseAware {  
   
-    private static final long serialVersionUID = 1L;  
+    private static final long serialVersionUID = 1L;
+    public static String SUCCESS = "success";
+    public static String ERROR = "error";
  
     public HttpServletRequest   request;  
     public HttpServletResponse  response;  

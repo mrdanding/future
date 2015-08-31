@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * @author shuaiqi.xsq, 15/8/29
+ * @author shuaiqi.xsq, 15/8/30
  */
 @Entity
 @Table(name = "task", schema = "", catalog = "Future")
 public class TaskEntity {
-    private String taskId;
+    private int taskId;
     private String sourceUserName;
     private String executorUserName;
     private String taskName;
@@ -22,14 +22,17 @@ public class TaskEntity {
     private String shipSource;
     private String priceMin;
     private String priceMax;
+    private String status;
+    private Integer isSuceess;
+    private String browseTime;
 
     @Id
     @Column(name = "taskId")
-    public String getTaskId() {
+    public int getTaskId() {
         return taskId;
     }
 
-    public void setTaskId(String taskId) {
+    public void setTaskId(int taskId) {
         this.taskId = taskId;
     }
 
@@ -153,6 +156,36 @@ public class TaskEntity {
         this.priceMax = priceMax;
     }
 
+    @Basic
+    @Column(name = "status")
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Basic
+    @Column(name = "isSuceess")
+    public Integer getIsSuceess() {
+        return isSuceess;
+    }
+
+    public void setIsSuceess(Integer isSuceess) {
+        this.isSuceess = isSuceess;
+    }
+
+    @Basic
+    @Column(name = "browseTime")
+    public String getBrowseTime() {
+        return browseTime;
+    }
+
+    public void setBrowseTime(String browseTime) {
+        this.browseTime = browseTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -160,7 +193,7 @@ public class TaskEntity {
 
         TaskEntity that = (TaskEntity) o;
 
-        if (taskId != null ? !taskId.equals(that.taskId) : that.taskId != null) return false;
+        if (taskId != that.taskId) return false;
         if (sourceUserName != null ? !sourceUserName.equals(that.sourceUserName) : that.sourceUserName != null)
             return false;
         if (executorUserName != null ? !executorUserName.equals(that.executorUserName) : that.executorUserName != null)
@@ -179,13 +212,16 @@ public class TaskEntity {
         if (shipSource != null ? !shipSource.equals(that.shipSource) : that.shipSource != null) return false;
         if (priceMin != null ? !priceMin.equals(that.priceMin) : that.priceMin != null) return false;
         if (priceMax != null ? !priceMax.equals(that.priceMax) : that.priceMax != null) return false;
+        if (status != null ? !status.equals(that.status) : that.status != null) return false;
+        if (isSuceess != null ? !isSuceess.equals(that.isSuceess) : that.isSuceess != null) return false;
+        if (browseTime != null ? !browseTime.equals(that.browseTime) : that.browseTime != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = taskId != null ? taskId.hashCode() : 0;
+        int result = taskId;
         result = 31 * result + (sourceUserName != null ? sourceUserName.hashCode() : 0);
         result = 31 * result + (executorUserName != null ? executorUserName.hashCode() : 0);
         result = 31 * result + (taskName != null ? taskName.hashCode() : 0);
@@ -198,6 +234,9 @@ public class TaskEntity {
         result = 31 * result + (shipSource != null ? shipSource.hashCode() : 0);
         result = 31 * result + (priceMin != null ? priceMin.hashCode() : 0);
         result = 31 * result + (priceMax != null ? priceMax.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (isSuceess != null ? isSuceess.hashCode() : 0);
+        result = 31 * result + (browseTime != null ? browseTime.hashCode() : 0);
         return result;
     }
 }

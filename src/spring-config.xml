@@ -15,7 +15,7 @@
     </bean>
 
     <!-- action -->
-    <bean id="publishTaskAction" class="com.future.action.PublishTaskAction">
+    <bean id="PublishTaskAction" class="com.future.action.PublishTaskAction">
         <property name="publishTaskService">
             <ref bean="PublishTaskService"></ref>
         </property>
