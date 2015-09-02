@@ -14,29 +14,41 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav" id="myTab">
-                <li><a href="/task/myPublishedTask.jsp">我的任务</a></li>
+                <li><a href="/getPublishedTask.action">我的任务</a></li>
                 <li><a href="/task/publishTask.jsp">发布任务</a></li>
                 <li><a href="#contact">关于我们</a></li>
             </ul>
-            <%--<ul class="nav navbar-nav navbar-right">--%>
-                <%--<li class="dropdown">--%>
-                    <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"--%>
-                       <%--aria-expanded="false">Dropdown <span class="caret"></span></a>--%>
-                    <%--<ul class="dropdown-menu">--%>
-                        <%--<li><a href="#">Action</a></li>--%>
-                        <%--<li><a href="#">Another action</a></li>--%>
-                        <%--<li><a href="#">Something else here</a></li>--%>
-                        <%--<li role="separator" class="divider"></li>--%>
-                        <%--<li class="dropdown-header">Nav header</li>--%>
-                        <%--<li><a href="#">Separated link</a></li>--%>
-                        <%--<li><a href="#">One more separated link</a></li>--%>
-                    <%--</ul>--%>
-                <%--</li>--%>
-            <%--</ul>--%>
+            <%
+                if (request != null && request.getSession() != null && request.getSession().getAttribute("userName") != null) {
+                    String userName = (String) request.getSession().getAttribute("userName");
+            %>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false"><%=userName%> <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Nav header</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <%
+            } else {
+            %>
             <div class="navbar-form navbar-right">
                 <a class="btn btn-primary" href="/account/login.jsp">登陆</a>
                 <a class="btn btn-default" href="http://bbs.byws.org/?/account/register/">注册</a>
             </div>
+            <%
+                }
+            %>
+
+
         </div>
         <!--/.nav-collapse -->
     </div>

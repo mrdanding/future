@@ -1,3 +1,5 @@
+<%@ page import="com.future.entity.TaskEntity" %>
+<%@ page import="com.future.action.GetPublishedTaskAction" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
@@ -13,99 +15,69 @@
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-<%@ include file="/basicUI/header.jsp"%>
-
+<%@ include file="/basicUI/header.jsp" %>
 <div style="margin:10px 100px;">
-    <table class="table" >
-        <thead>
-        <tr>
-            <th>
-                编号
-            </th>
-            <th>
-                产品
-            </th>
-            <th>
-                交付时间
-            </th>
-            <th>
-                状态
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>
-                1
-            </td>
-            <td>
-                TB - Monthly
-            </td>
-            <td>
-                01/04/2012
-            </td>
-            <td>
-                Default
-            </td>
-        </tr>
-        <tr class="success">
-            <td>
-                1
-            </td>
-            <td>
-                TB - Monthly
-            </td>
-            <td>
-                01/04/2012
-            </td>
-            <td>
-                Approved
-            </td>
-        </tr>
-        <tr class="error">
-            <td>
-                2
-            </td>
-            <td>
-                TB - Monthly
-            </td>
-            <td>
-                02/04/2012
-            </td>
-            <td>
-                Declined
-            </td>
-        </tr>
-        <tr class="warning">
-            <td>
-                3
-            </td>
-            <td>
-                TB - Monthly
-            </td>
-            <td>
-                03/04/2012
-            </td>
-            <td>
-                Pending
-            </td>
-        </tr>
-        <tr class="info">
-            <td>
-                4
-            </td>
-            <td>
-                TB - Monthly
-            </td>
-            <td>
-                04/04/2012
-            </td>
-            <td>
-                Call in to confirm
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <s:if test="taskEntityList != null">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    任务名称
+                </th>
+                <th>
+                    关键词
+                </th>
+                <th>
+                    宝贝地址
+                </th>
+                <th>
+                    状态
+                </th>
+                <th>
+                    发布时间
+                </th>
+                <th>
+                    目标浏览数量
+                </th>
+                <th>
+                    已完成浏览数量
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <s:iterator value="taskEntityList" id="task">
+                <tr>
+                    <td>
+                        <s:property value="#task.taskName"></s:property>
+                    </td>
+                    <td>
+                        <s:property value="#task.keyword"></s:property>
+                    </td>
+                    <td>
+                        <s:property value="#task.taskUrl"></s:property>
+                    </td>
+                    <td>
+                        <s:property value="#task.status"></s:property>
+                    </td>
+                    <td>
+                        <s:property value="#task.taskPublishTime"></s:property>
+                    </td>
+                    <td>
+                        <s:property value="#task.taskTotalCount"></s:property>
+                    </td>
+                    <td>
+                        <s:property value="#task.taskFinishCount"></s:property>
+                    </td>
+                </tr>
+            </s:iterator>
+            </tbody>
+        </table>
+    </s:if>
+    <s:else>
+        没有发布任务!
+    </s:else>
+</div>
+
 </div>
 </body>
 </html>

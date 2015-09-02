@@ -69,10 +69,10 @@
 </style>
 
 <div class="container">
-    <form class="form-signin">
+    <form class="form-signin" method="post" action="/login">
         <h2 class="form-signin-heading">欢迎登录系统</h2>
-        <input type="email" id="inputEmail" class="form-control" placeholder="仅支持用户名登陆" required="" autofocus="">
-        <input type="password" id="inputPassword" class="form-control" placeholder="密码" required="">
+        <input type="name" name="name" class="form-control" placeholder="仅支持用户名登陆" required="" autofocus="">
+        <input type="password" name="password" class="form-control" placeholder="密码" required="">
         <div class="checkbox">
             <label>
                 <input type="checkbox" value="remember-me"> 记住密码

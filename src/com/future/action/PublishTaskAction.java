@@ -2,7 +2,7 @@ package com.future.action;
 
 
 import com.future.entity.TaskEntity;
-import com.future.service.PublishTaskService;
+import com.future.service.TaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +14,7 @@ import java.sql.Timestamp;
  */
 public class PublishTaskAction extends BaseAction {
     private static final Logger logger = LoggerFactory.getLogger(PublishTaskAction.class);
-    private PublishTaskService publishTaskService;
+    private TaskService taskService;
 
     public String execute() {
         try {
@@ -39,7 +39,7 @@ public class PublishTaskAction extends BaseAction {
             taskEntity.setIsSuceess(0);// 0 = false;
             taskEntity.setBrowseTime("2");
 
-            publishTaskService.saveTask(taskEntity);
+            taskService.saveTask(taskEntity);
             logger.info("save entity success:" + taskEntity);
             return SUCCESS;
         } catch (UnsupportedEncodingException e) {
@@ -54,12 +54,12 @@ public class PublishTaskAction extends BaseAction {
     }
 
     // getter and setter
-    public PublishTaskService getPublishTaskService() {
-        return publishTaskService;
+    public TaskService getTaskService() {
+        return taskService;
     }
 
-    public void setPublishTaskService(PublishTaskService publishTaskService) {
-        this.publishTaskService = publishTaskService;
+    public void setTaskService(TaskService taskService) {
+        this.taskService = taskService;
     }
 
 }

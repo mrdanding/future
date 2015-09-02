@@ -10,7 +10,7 @@
         <!--解决乱码 -->
         <constant name="struts.i18n.encoding" value="UTF-8" />
 
-        <package name="methods" namespace="/task" extends="struts-default">
+        <package name="methods" namespace="/" extends="struts-default">
 
                 <!--<default-action-ref name="error"></default-action-ref>-->
                 <!--<action name="error">-->
@@ -22,5 +22,16 @@
                         <result name="success">/task/publishTask.jsp</result>
                         <result name="error">/error.jsp</result>
                 </action>
+
+                <action name="login" class="LoginAction">
+                        <result name="success">/task/myPublishedTask.jsp</result>
+                        <result name="error">/account/login.jsp</result>
+                </action>
+
+                <action name="getPublishedTask" class="GetPublishedTaskAction">
+                        <result name="success">/task/myPublishedTask.jsp</result>
+                        <result name="error">/error.jsp</result>
+                </action>
         </package>
+
 </struts>

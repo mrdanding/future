@@ -8,7 +8,7 @@
     </bean>
 
     <!-- service -->
-    <bean id="PublishTaskService" class="com.future.service.impl.PublishTaskServiceImpl">
+    <bean id="TaskService" class="com.future.service.impl.TaskServiceImpl">
         <property name="taskDao">
             <ref bean="TaskDao"></ref>
         </property>
@@ -16,8 +16,17 @@
 
     <!-- action -->
     <bean id="PublishTaskAction" class="com.future.action.PublishTaskAction">
-        <property name="publishTaskService">
-            <ref bean="PublishTaskService"></ref>
+        <property name="taskService">
+            <ref bean="TaskService"></ref>
+        </property>
+    </bean>
+
+    <bean id="LoginAction" class="com.future.action.LoginAction">
+    </bean>
+
+    <bean id="GetPublishedTaskAction" class="com.future.action.GetPublishedTaskAction">
+        <property name="taskService">
+            <ref bean="TaskService"></ref>
         </property>
     </bean>
 
