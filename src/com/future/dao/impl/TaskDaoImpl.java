@@ -18,30 +18,34 @@ public class TaskDaoImpl implements TaskDao {
 
 
     @Override
-    public void saveTask(TaskEntity taskEntity) {
+    public boolean saveTask(TaskEntity taskEntity) {
         logger.info("save task:" + taskEntity.toString());
 
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-
         Session session = null;
+        boolean is_suc = false;
         try {
             session = sessionFactory.openSession();
             session.beginTransaction();
-            session.save(taskEntity);
+            session.saveOrUpdate(taskEntity);
             session.getTransaction().commit();
+            is_suc = true;
         } catch (Exception e) {
             logger.error(e.getMessage());
             if (session != null) {
                 session.getTransaction().rollback();
             }
+            is_suc = false;
         } finally {
             if (session != null) {
                 session.close();
             }
         }
+        return is_suc;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<TaskEntity> getPublishedTask(String userName) {
         logger.info("get task and the userName is :" + userName);
 

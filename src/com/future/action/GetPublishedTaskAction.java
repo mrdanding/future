@@ -1,10 +1,14 @@
 package com.future.action;
 
+import com.alibaba.fastjson.JSON;
 import com.future.entity.TaskEntity;
 import com.future.service.TaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,5 +47,17 @@ public class GetPublishedTaskAction extends BaseAction {
 
     public void setTaskService(TaskService taskService) {
         this.taskService = taskService;
+    }
+    public void getTaskData() throws IOException {
+        response.setContentType("text/html;charset=utf-8");
+        //response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        List<String> list = new ArrayList<>();
+        list.add("luolanlan");
+
+        String jsonString = JSON.toJSONString(list);
+        out.println(jsonString);
+        out.flush();
+        out.close();
     }
 }

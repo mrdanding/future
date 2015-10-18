@@ -1,13 +1,20 @@
 package com.future.action;
 
 
+import com.alibaba.fastjson.JSON;
 import com.future.entity.TaskEntity;
 import com.future.service.TaskService;
+import com.sun.xml.internal.bind.v2.model.core.ID;
+
+import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
+import java.util.HashMap;
 
 /**
  * @author shuaiqi.xsq, 15/8/29
@@ -15,7 +22,86 @@ import java.sql.Timestamp;
 public class PublishTaskAction extends BaseAction {
     private static final Logger logger = LoggerFactory.getLogger(PublishTaskAction.class);
     private TaskService taskService;
-
+    
+    public String getParam(ResponseData responseData, String param) throws IOException{
+    	String reString = request.getParameter(param);
+    	if (reString == null){
+    		logger.warn("Failed to get " + param);
+    		responseData.setErrorMes("no "+param);
+    		sendJsonData(responseData);
+    	}
+    	return reString;
+    }
+	public void addTask() throws IOException{
+		ResponseData responseData = new ResponseData();
+		String sourceUserName = this.getParam(responseData, "username");
+		if (sourceUserName == null){
+			return;
+		}
+		String keyword = this.getParam(responseData, "keyword");
+		if (keyword == null){
+			return;
+		}
+		String exactword = this.getParam(responseData, "exactword");
+		if (exactword == null){
+			return;
+		}
+		String lowerlimit = this.getParam(responseData, "lowerlimit");
+		if (lowerlimit == null){
+			return;
+		}
+		String upperlimit = this.getParam(responseData, "upperlimit");
+		if (upperlimit == null){
+			return;
+		}
+		String service = this.getParam(responseData, "service");
+		if (service == null){
+			return;
+		}
+		String city = this.getParam(responseData, "city");
+		if (city == null){
+			return;
+		}
+        TaskEntity taskEntity = new TaskEntity();
+        taskEntity.setSourceUserName(sourceUserName);
+        taskEntity.setKeyword(keyword);
+        taskEntity.setExactword(exactword);
+        taskEntity.setLowerLimit(lowerlimit);
+        taskEntity.setUpperLimit(upperlimit);
+        taskEntity.setService(service);
+        taskEntity.setCity(city);
+        
+        if(!taskService.saveTask(taskEntity))
+        {
+        	logger.warn("Failed to save task");
+        	responseData.setErrorMes("Failed to save task");
+        	sendJsonData(responseData);
+        	return;
+        }
+        responseData.setStatus(1);
+        responseData.setObj(taskEntity);
+		logger.info("Add "+ sourceUserName + " "+ keyword +" "+exactword);
+        sendJsonData(responseData);
+	}
+	public void getTask() throws IOException{
+		ResponseData responseData = new ResponseData();
+		String userName = request.getParameter("username");
+		if (userName == null){
+			return;
+		}
+		logger.debug("user name :" + userName);
+        TaskEntity taskEntity = taskService.getNextTask(userName);
+        if (taskEntity == null){
+        	responseData.setErrorMes("no task");
+        	sendJsonData(responseData);
+        }
+        responseData.setObj(taskEntity);
+        responseData.setStatus(1);
+        sendJsonData(responseData);
+        return;
+	}
+	
+	
     public String execute() {
         try {
             request.setCharacterEncoding("utf-8");
@@ -32,9 +118,6 @@ public class PublishTaskAction extends BaseAction {
             taskEntity.setTaskFinishCount(0);
             taskEntity.setKeyword(request.getParameter("keyword"));
             taskEntity.setTaskUrl(request.getParameter("url"));
-            taskEntity.setShipSource(request.getParameter("shipSource"));
-            taskEntity.setPriceMin(request.getParameter("priceMin"));
-            taskEntity.setPriceMax(request.getParameter("priceMax"));
             taskEntity.setStatus("undo");
             taskEntity.setIsSuceess(0);// 0 = false;
             taskEntity.setBrowseTime("2");
