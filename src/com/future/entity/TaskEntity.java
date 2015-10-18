@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * @author shuaiqi.xsq, 15/8/30
  */
 @Entity
-@Table(name = "task", schema = "", catalog = "Future")
+@Table(name = "task", schema = "", catalog = "future")
 public class TaskEntity {
     private int taskId;
     private String sourceUserName;
@@ -18,10 +18,12 @@ public class TaskEntity {
     private Integer taskTotalCount;
     private Integer taskFinishCount;
     private String keyword;
+    private String exactword;
+    private String service;
+    private String city;
+    private String lowerlimit;
+    private String upperlimit;
     private String taskUrl;
-    private String shipSource;
-    private String priceMin;
-    private String priceMax;
     private String status;
     private Integer isSuceess;
     private String browseTime;
@@ -127,33 +129,33 @@ public class TaskEntity {
     }
 
     @Basic
-    @Column(name = "shipSource")
-    public String getShipSource() {
-        return shipSource;
+    @Column(name = "city")
+    public String getCity() {
+        return city;
     }
 
-    public void setShipSource(String shipSource) {
-        this.shipSource = shipSource;
-    }
-
-    @Basic
-    @Column(name = "priceMin")
-    public String getPriceMin() {
-        return priceMin;
-    }
-
-    public void setPriceMin(String priceMin) {
-        this.priceMin = priceMin;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     @Basic
-    @Column(name = "priceMax")
-    public String getPriceMax() {
-        return priceMax;
+    @Column(name = "lowerlimit")
+    public String getLowerLimit() {
+        return lowerlimit;
     }
 
-    public void setPriceMax(String priceMax) {
-        this.priceMax = priceMax;
+    public void setLowerLimit(String lowerlimit) {
+        this.lowerlimit = lowerlimit;
+    }
+
+    @Basic
+    @Column(name = "upperlimit")
+    public String getUpperLimit() {
+        return upperlimit;
+    }
+
+    public void setUpperLimit(String upperlimit) {
+        this.upperlimit = upperlimit;
     }
 
     @Basic
@@ -209,9 +211,9 @@ public class TaskEntity {
             return false;
         if (keyword != null ? !keyword.equals(that.keyword) : that.keyword != null) return false;
         if (taskUrl != null ? !taskUrl.equals(that.taskUrl) : that.taskUrl != null) return false;
-        if (shipSource != null ? !shipSource.equals(that.shipSource) : that.shipSource != null) return false;
-        if (priceMin != null ? !priceMin.equals(that.priceMin) : that.priceMin != null) return false;
-        if (priceMax != null ? !priceMax.equals(that.priceMax) : that.priceMax != null) return false;
+        if (city != null ? !city.equals(that.city) : that.city != null) return false;
+        if (lowerlimit != null ? !lowerlimit.equals(that.lowerlimit) : that.lowerlimit != null) return false;
+        if (upperlimit != null ? !upperlimit.equals(that.upperlimit) : that.upperlimit != null) return false;
         if (status != null ? !status.equals(that.status) : that.status != null) return false;
         if (isSuceess != null ? !isSuceess.equals(that.isSuceess) : that.isSuceess != null) return false;
         if (browseTime != null ? !browseTime.equals(that.browseTime) : that.browseTime != null) return false;
@@ -231,12 +233,30 @@ public class TaskEntity {
         result = 31 * result + (taskFinishCount != null ? taskFinishCount.hashCode() : 0);
         result = 31 * result + (keyword != null ? keyword.hashCode() : 0);
         result = 31 * result + (taskUrl != null ? taskUrl.hashCode() : 0);
-        result = 31 * result + (shipSource != null ? shipSource.hashCode() : 0);
-        result = 31 * result + (priceMin != null ? priceMin.hashCode() : 0);
-        result = 31 * result + (priceMax != null ? priceMax.hashCode() : 0);
+        result = 31 * result + (city != null ? city.hashCode() : 0);
+        result = 31 * result + (lowerlimit != null ? lowerlimit.hashCode() : 0);
+        result = 31 * result + (upperlimit != null ? upperlimit.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (isSuceess != null ? isSuceess.hashCode() : 0);
         result = 31 * result + (browseTime != null ? browseTime.hashCode() : 0);
         return result;
     }
+    @Basic
+    @Column(name = "exactword")
+	public String getExactword() {
+		return exactword;
+	}
+
+	public void setExactword(String exactword) {
+		this.exactword = exactword;
+	}
+    @Basic
+    @Column(name = "service")
+	public String getService() {
+		return service;
+	}
+
+	public void setService(String service) {
+		this.service = service;
+	}
 }
