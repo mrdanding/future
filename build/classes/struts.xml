@@ -20,6 +20,7 @@
                 <action name="searchParams" class="com.future.action.AppAction" method="requestJson" />
 				<action name="addTask" class="PublishTaskAction" method="addTask" />
 				<action name="getTask" class="PublishTaskAction" method="getTask" />
+				<action name="finish" class="PublishTaskAction" method="finishTask" />
 				
                 <action name="publishTask" class="PublishTaskAction">
                         <result name="success">/task/publishTask.jsp</result>

@@ -2,6 +2,7 @@ package com.future.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author shuaiqi.xsq, 15/8/30
@@ -27,8 +28,14 @@ public class TaskEntity {
     private String status;
     private Integer isSuceess;
     private String browseTime;
+    public TaskEntity() {
+		// TODO Auto-generated constructor stub
+    	taskTotalCount = 1;
+    	taskFinishCount = 0;
+    }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "taskId")
     public int getTaskId() {
         return taskId;
@@ -89,7 +96,7 @@ public class TaskEntity {
     }
 
     @Basic
-    @Column(name = "taskTotalCount")
+    @Column(name = "taskTotalCount", nullable=false, columnDefinition="INT default 1")
     public Integer getTaskTotalCount() {
         return taskTotalCount;
     }
@@ -99,7 +106,7 @@ public class TaskEntity {
     }
 
     @Basic
-    @Column(name = "taskFinishCount")
+    @Column(name = "taskFinishCount",nullable=false, columnDefinition="INT default 0")
     public Integer getTaskFinishCount() {
         return taskFinishCount;
     }

@@ -10,5 +10,5 @@ import java.util.List;
 public interface TaskDao {
     public boolean saveTask(TaskEntity taskEntity);
     public List<TaskEntity> getPublishedTask(String userName);
-
+    public List<TaskEntity> getAllTask();
 }
