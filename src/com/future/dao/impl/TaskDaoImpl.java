@@ -73,6 +73,29 @@ public class TaskDaoImpl implements TaskDao {
         logger.info(userName + " does not have published tasks");
         return null;
     }
+    @SuppressWarnings("unchecked")
+	@Override
+    public List<TaskEntity> getAllTask(){
+    	SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    	Session session = null;
+    	try{
+    		session = sessionFactory.openSession();
+    		String hql = "from TaskEntity where taskFinishCount < taskTotalCount";
+    		Query query = session.createQuery(hql);
+    		if(query.list() != null){
+    			logger.info("Has " + query.list().size() +" entity");
+    			return (List<TaskEntity>) query.list();
+    		}
+          } 
+    	catch (Exception e) {
+    		logger.error(e.getMessage());
+    	} finally {
+    		if (session != null) {
+    			session.close();
+    		}
+    	}
+    	return null;
+    }
 
 //    @Override
 //    public List<TaskEntity> getPublishedTask(String userName) {

@@ -16,7 +16,7 @@
             <ref bean="TaskDao"></ref>
         </property>
     </bean>
-
+	
     <!-- action -->
     <bean id="PublishTaskAction" class="com.future.action.PublishTaskAction">
         <property name="taskService">
